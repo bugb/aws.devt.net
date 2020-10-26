@@ -1,4 +1,5 @@
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import {useRef, useEffect} from 'react'
 import { graphql } from 'gatsby'
 import Comment from '../components/comment'
@@ -28,16 +29,24 @@ export default function Template({
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html, excerpt } = markdownRemark
   return (
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <h1>{frontmatter.title}</h1>
-        <h2>{frontmatter.date}</h2>
-        <div
-          className="blog-post-content"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-        { excerpt? <></>: <Comment commentBox={commentBox} />}
-      </div>
+    <div>
+			<div className="application">
+				<Helmet>
+					<meta charSet="utf-8" />
+					<title>{frontmatter.title}</title>
+				</Helmet>
+			</div>
+			<div className="blog-post-container">
+				<div className="blog-post">
+					<h1>{frontmatter.title}</h1>
+					<h2>{frontmatter.date}</h2>
+					<div
+						className="blog-post-content"
+						dangerouslySetInnerHTML={{ __html: html }}
+					/>
+					{ excerpt? <></>: <Comment commentBox={commentBox} />}
+				</div>
+			</div>
     </div>
   )
 }
