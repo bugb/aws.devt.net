@@ -1,7 +1,7 @@
 ---
-slug: "aws-update-lambda-environment-variable-hack"
+slug: "aws-update-lambda-environment-variables-hack"
 date: "2020-10-20"
-title: "Using AWS Lambda as a mini database - AWS update lambda environment hack"
+title: "Using AWS Lambda as a (mini) database - Part 1: update Lambda environment variables hack"
 ---
 
 Sometimes we need to save/update environment variables, suppose you have a small set of data and you do not want to save it on external services like S3, DynamoDB
@@ -16,7 +16,7 @@ And you might think create a code likes this:
 
 But each time you run AWS lambda, it will create an isolated environments so you can not set environment variables likes the example above.
 
-After spend some minutes, I am able to make it works, we can use AWS Lambda as a mini database. The hacky way is we can use lambda update function configuration to update environment variable. Here is my example with Nodejs (you can use any language just Google lambda update function configuration + your SDK): 
+Fortunately, we can use AWS Lambda as a mini database. I have used it for very long time ago and I want to share it here for fun and profit because as you know AWS Lambda is pretty dirty cheap. The hacky way is we can use Lambda update function configuration to update environment variable. Here is my example with Nodejs (you can use any language just Google Lambda update function configuration + your SDK): 
 
 1. Create a lambda function with any name that you like for example: test-update-env
 
@@ -74,9 +74,11 @@ After spend some minutes, I am able to make it works, we can use AWS Lambda as a
 
 Now you get the idea, you can get any value likes token from API call, calendar/booking data, ... and set/update it to environment variables.
 
-Note: AWS Lambda environment variable has 4Kb limit, it means if you use normal English characters we can store 4000 characters (not so bad).
+Note: AWS Lambda environment variable has 4Kb limit, it means if you use normal English characters we can store 4000 characters (not so bad at all). See detail [here](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html)! 
 
-You can use a tool here for counting bytes online: https://minitool.github.io/countbytesonline/
+You can use my tool here for counting bytes online: https://minitool.github.io/countbytesonline/
 
+In the next article I will share a post about using Lambda as a real database so we do not need to worry about the limitation above.
+ 
 Please share this article and comment if you like the article!
 
