@@ -7,10 +7,16 @@ const IndexPage = ({
   },
 }) => {
   const Posts = edges
-    .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
+    .filter(edge => !!edge.node.frontmatter.date)
     .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
 
-  return <div>{Posts}</div>
+  return (
+    <div>
+      <h2>List my awesome articles ❤️: </h2> 
+      <br />
+      <div>{Posts}</div> 
+    </div>
+  )
 }
 
 export default IndexPage
