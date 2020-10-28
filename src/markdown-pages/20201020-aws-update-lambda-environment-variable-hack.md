@@ -21,53 +21,53 @@ Fortunately, we can use AWS Lambda as a mini database. I have used it for very l
 
 2. Paste the code below to your function:
 
-```
-  const AWS = require('aws-sdk');
-  const lambda = new AWS.Lambda();
+```javascript{numberLines: false}
+const AWS = require('aws-sdk')
+const lambda = new AWS.Lambda()
 
-  exports.handler = async(event) => {
-      const params = {
-	  FunctionName: "test-update-env",
-	  Environment: {
-	      Variables: {
-		  'MY_VAR_1': 'Foo', // Set process.env.MY_VAR_1 = 'Foo'
-	      }
-	  },
-      };
-      await lambda.updateFunctionConfiguration(params).promise();
-      const response = {
-	  statusCode: 200,
-	  body: JSON.stringify('Update env successfully!'),
-      };
-      return response;
-  };
+exports.handler = async event => {
+  const params = {
+    FunctionName: 'test-update-env',
+    Environment: {
+      Variables: {
+        MY_VAR_1: 'Foo', // Set process.env.MY_VAR_1 = 'Foo'
+      },
+    },
+  }
+  await lambda.updateFunctionConfiguration(params).promise()
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify('Update env successfully!'),
+  }
+  return response
+}
 ```
 
 3. Now run this function and press F5 and you can see the function now has environment variable `MY_VAR_1` with value: `Foo`
 
 4. Modify the code a bit:
 
-```
-  const AWS = require('aws-sdk');
-  const lambda = new AWS.Lambda();
+```javascript{numberLines: false}
+const AWS = require('aws-sdk')
+const lambda = new AWS.Lambda()
 
-  exports.handler = async(event) => {
-      const params = {
-	  FunctionName: "test-update-env",
-	  Environment: {
-	      Variables: {
-		  'MY_VAR_1': 'New Foo', // update process.env.MY_VAR_1 = 'New Foo'
-		  'MY_VAR_2': 'Bar', // Set process.env.MY_VAR_2 = 'Bar'
-	      }
-	  },
-      };
-      await lambda.updateFunctionConfiguration(params).promise();
-      const response = {
-	  statusCode: 200,
-	  body: JSON.stringify('Update env successfully!'),
-      };
-      return response;
-  };
+exports.handler = async event => {
+  const params = {
+    FunctionName: 'test-update-env',
+    Environment: {
+      Variables: {
+        MY_VAR_1: 'New Foo', // update process.env.MY_VAR_1 = 'New Foo'
+        MY_VAR_2: 'Bar', // Set process.env.MY_VAR_2 = 'Bar'
+      },
+    },
+  }
+  await lambda.updateFunctionConfiguration(params).promise()
+  const response = {
+    statusCode: 200,
+    body: JSON.stringify('Update env successfully!'),
+  }
+  return response
+}
 ```
 
 5. Now run this again and you can see the function now has updated environment variable `MY_VAR_1` with a new value: `New foo` and new environment variable `MY_VAR_2` with value: `Bar`
