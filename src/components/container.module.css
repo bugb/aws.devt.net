@@ -2,3 +2,10 @@
   margin: 3rem auto;
   max-width: 800px;
 }
+.container p {
+  font-family: "Helvetica";
+  letter-spacing: .01em;
+}
+.container li {
+  font-family: "Helvetica";
+}
