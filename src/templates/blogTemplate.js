@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { useRef, useEffect } from 'react'
 import { graphql } from 'gatsby'
 import Comment from '../components/comment'
+import Container from '../components/container'
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -10,7 +11,6 @@ export default function Template({
   const commentBox = React.createRef()
 
   useEffect(() => {
-    console.log('chaugiang')
     const scriptEl = document.createElement('script')
     scriptEl.async = true
     scriptEl.src = 'https://utteranc.es/client.js'
@@ -36,17 +36,16 @@ export default function Template({
           <title>{frontmatter.title}</title>
         </Helmet>
       </div>
-      <div className="blog-post-container">
+      <Container>
         <div className="blog-post">
           <h1>{frontmatter.title}</h1>
-          <h2>{frontmatter.date}</h2>
           <div
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}
           />
           {excerpt ? <></> : <Comment commentBox={commentBox} />}
         </div>
-      </div>
+      </Container>
     </div>
   )
 }
