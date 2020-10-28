@@ -1,5 +1,5 @@
-import React from "react"
-import PostLink from "../components/post-link"
+import React from 'react'
+import PostLink from '../components/post-link'
 
 const IndexPage = ({
   data: {
@@ -12,9 +12,9 @@ const IndexPage = ({
 
   return (
     <div>
-      <h2>List my awesome articles ❤️: </h2> 
+      <h2>List my awesome articles ❤️: </h2>
       <br />
-      <div>{Posts}</div> 
+      <div>{Posts}</div>
     </div>
   )
 }
